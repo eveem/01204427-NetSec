@@ -7,15 +7,13 @@ edges = []
 id2name = {}
 id2size = {}
 
-TH = 50
+TH = 30
 
 csvfile = open('./internal_data_rowname.csv', 'r')
 reader = csv.DictReader(csvfile)
 for row in reader:
     id2name[row['current']] = row['name']
     val = float(row['bandwidth'])/TH
-    if val < 1.2:
-        val = 1.2
     if row['current'] not in id2size:
         id2size[row['current']] = val
     else:
