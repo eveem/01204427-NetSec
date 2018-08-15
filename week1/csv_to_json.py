@@ -9,23 +9,24 @@ id2size = {}
 
 TH = 30
 
-csvfile = open('./internal_data_rowname.csv', 'r')
+csvfile = open('./international_data.csv', 'r')
+# csvfile = open('./domestic_data.csv', 'r')
 reader = csv.DictReader(csvfile)
 for row in reader:
-    id2name[row['current']] = row['name']
-    val = float(row['bandwidth'])/TH
-    if row['current'] not in id2size:
-        id2size[row['current']] = val
+    id2name[row['ASN']] = row['Name']
+    val = float(row['Bandwidth'])/TH
+    if row['ASN'] not in id2size:
+        id2size[row['ASN']] = val
     else:
-        id2size[row['current']] += val
-    if row['source'] not in id2size:
-        id2size[row['source']] = val
+        id2size[row['ASN']] += val
+    if row['ASN-Source'] not in id2size:
+        id2size[row['ASN-Source']] = val
     else:
-        id2size[row['source']] += val
+        id2size[row['ASN-Source']] += val
     
     edge = {}
-    edge['sourceID'] = row['source']
-    edge['targetID'] = row['current']
+    edge['sourceID'] = row['ASN-Source']
+    edge['targetID'] = row['ASN']
     edge['size'] = 1
     edge['attributes'] = {}
     edges.append(edge)
@@ -54,5 +55,7 @@ d['nodes'] = nodes
 d['edges'] = edges
 
 data = json.dumps(d)
-with open('./data.json', 'w') as f:
+with open('./international_data.json', 'w') as f:
     f.write(data)
+# with open('./domestic_data.json', 'w') as f:
+#     f.write(data)
