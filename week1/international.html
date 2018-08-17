@@ -33,7 +33,7 @@ $.getJSON('international_data.json', function (json) {
         series : [
             {
                 type: 'graph',
-                layout: 'circular',
+                layout: '',
                 progressiveThreshold: 700,
                 data: json.nodes.map(function (node) {
                     return {
