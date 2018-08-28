@@ -48,7 +48,7 @@ for idx in id2name:
     node['attributes'] = {}
     nodes.append(node)
 
-nodes = sorted(nodes, key=lambda k: k['size'], reverse=True) 
+nodes = sorted(nodes, key=lambda k: k['x'], reverse=True) 
 
 d = {}
 d['nodes'] = nodes
