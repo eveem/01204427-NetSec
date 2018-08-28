@@ -33,3 +33,7 @@ TIMEOUT : 3312
 
 cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "logout-page" | wc -l
 logout-page : 22
+
+cat login-20170102-anon.csv | cut -d' ' -f2,9 | sort | grep "login-page" >> login_unixtime_login.txt
+generate unix time file : I think login only count from login-page activity
+cat login_unixtime_login.txt | cut -d' ' -f1 >> login_unixtime.txt
