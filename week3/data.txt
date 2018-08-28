@@ -1,0 +1,35 @@
+cat login-20170102-anon.csv.txt | cut -d' ' -f3 | sort | uniq | wc -l
+user : 1668
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f2 | sort | uniq | wc -l
+login : 3638
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f4 | sort | uniq | wc -l
+logout : 3260
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6 | sort | uniq | grep -v "-" | wc -l
+ipv4 : 2188
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f7 | sort | uniq | grep -v "-" | wc -l
+ipv6 : 1126
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep -v "-" | wc -l
+dual : 3127
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f7 | grep "-" | wc -l
+ipv4 only : 4000
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f6 | grep "-" | wc -l
+ipv6 only : 10
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "login-page" | wc -l
+login-page : 3574
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "RE-LOGIN" | wc -l
+RE-LOGIN : 229
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "TIMEOUT" | wc -l
+TIMEOUT : 3312
+
+cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "logout-page" | wc -l
+logout-page : 22
