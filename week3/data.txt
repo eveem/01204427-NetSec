@@ -1,39 +1,56 @@
 cat login-20170102-anon.csv.txt | cut -d' ' -f3 | sort | uniq | wc -l
 user : 1668
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f2 | sort | uniq | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f2 | sort | uniq | wc -l
 login : 3638
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f4 | sort | uniq | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f4 | sort | uniq | wc -l
 logout : 3260
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f6 | sort | uniq | grep -v "-" | wc -l
-ipv4 : 2188
+cat login-20170102-anon.csv | cut -d' ' -f6,7 | sort | uniq | grep '-' | cut -d' ' -f1 | grep -v '-' | wc -l
+ipv4 : 1320
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f7 | sort | uniq | grep -v "-" | wc -l
-ipv6 : 1126
+cat login-20170102-anon.csv | cut -d' ' -f6,7 | sort | uniq | grep '-' | cut -d' ' -f2 | grep -v '-' | wc -l
+ipv6 : 5
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f6,7 | grep -v "-" | wc -l
-dual : 3127
+cat login-20170102-anon.csv | cut -d' ' -f6,7 | grep -v "-" | wc -l
+dual : 1132
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f7 | grep "-" | wc -l
-ipv4 only : 4000
+cat login-20170102-anon.csv | cut -d' ' -f7 | grep "-" | wc -l
+ipv4 not uniq : 4000
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f6 | grep "-" | wc -l
-ipv6 only : 10
+cat login-20170102-anon.csv | cut -d' ' -f6 | grep "-" | wc -l
+ipv6 not uniq : 10
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "login-page" | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f6,7 | grep -v "-" | wc -l
+dual not uniq : 3127
+
+cat login-20170102-anon.csv | cut -d' ' -f9 | grep "login-page" | wc -l
 login-page : 3574
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "RE-LOGIN" | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f9 | grep "RE-LOGIN" | wc -l
 RE-LOGIN : 229
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "TIMEOUT" | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f9 | grep "TIMEOUT" | wc -l
 TIMEOUT : 3312
 
-cat login-20170102-anon.csv.txt | cut -d' ' -f9 | grep "logout-page" | wc -l
+cat login-20170102-anon.csv | cut -d' ' -f9 | grep "logout-page" | wc -l
 logout-page : 22
 
 cat login-20170102-anon.csv | cut -d' ' -f2,9 | sort | grep "login-page" >> login_unixtime_login.txt
 generate unix time file : I think login only count from login-page activity
 cat login_unixtime_login.txt | cut -d' ' -f1 >> login_unixtime.txt
+
+Server
+::ffff:158.108.218.201 : 644
+::ffff:158.108.218.202 : 643
+::ffff:158.108.218.203 : 553
+::ffff:158.108.218.204 : 665
+::ffff:158.108.218.205 : 570
+::ffff:158.108.218.206 : 570
+::ffff:158.108.218.207 : 589
+::ffff:158.108.218.208 : 567
+::ffff:158.108.218.209 : 548
+::ffff:158.108.218.210 : 592
+::ffff:158.108.218.211 : 523
+::ffff:158.108.218.212 : 673
