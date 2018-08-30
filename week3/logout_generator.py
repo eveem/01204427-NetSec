@@ -1,9 +1,8 @@
 from datetime import datetime
-import json
 
 fn = open('login-20170102-anon.csv', 'r')
 
-#### login ####
+#### logout ####
 dict_data = {}
 data = []
 
