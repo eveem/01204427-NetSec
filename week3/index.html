@@ -102,7 +102,7 @@
                                                 <i class="zmdi zmdi-n-4-square"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>2188</h2>
+                                                <h2>1320</h2>
                                                 <span>IPv4</span>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                                                 <i class="zmdi zmdi-n-6-square"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>1126</h2>
+                                                <h2>5</h2>
                                                 <span>IPv6</span>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                                                 <i class="zmdi zmdi-network"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>3127</h2>
+                                                <h2>1132</h2>
                                                 <span>Dual IP</span>
                                             </div>
                                         </div>
@@ -162,8 +162,18 @@
                             <div class="col-lg-12">
                                 <div class="au-card recent-report" style="padding-bottom:0px;">
                                     <div class="au-card-inner">
-                                        <h3 class="title-2">Login Server Distribution</h3>
+                                        <h3 class="title-2">Server Distribution</h3>
                                         <div id="timestamp" style="height:400px; width:100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="au-card recent-report" style="padding-bottom:0px;">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">User Time Distribution</h3>
+                                        <div id="user_time" style="height:400px; width:100%; margin-bottom:20px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -224,7 +234,7 @@
                     data:[
                         {value:4000, name:'IPv4'},
                         {value:10, name:'IPv6'},
-                        {value:3574, name:'Dual Stack'},
+                        {value:3127, name:'Dual Stack'},
                     ]
                 }
             ]
@@ -321,6 +331,91 @@
             }]
         };
         ;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+
+        var dom = document.getElementById("user_time");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        $.get('user_time.json', function (data) {
+            myChart.setOption(option = {
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    name: 'Time',
+                    data: data.map(function (item) {
+                        return item[0];
+                    })
+                },
+                yAxis: {
+                    name: 'User',
+                    splitLine: {
+                        show: false
+                    }
+                },
+                toolbox: {
+                    left: 'center',
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        }
+                    }
+                },
+                dataZoom: [{
+                    startValue: '2014-06-01'
+                }, {
+                    type: 'inside'
+                }],
+                visualMap: {
+                    top: 10,
+                    right: 10,
+                    pieces: [{
+                        gt: 0,
+                        lte: 50,
+                        color: '#096'
+                    }, {
+                        gt: 50,
+                        lte: 100,
+                        color: '#ffde33'
+                    }, {
+                        gt: 100,
+                        lte: 150,
+                        color: '#ff9933'
+                    }, {
+                        gt: 150,
+                        color: '#cc0033'
+                    }],
+                    outOfRange: {
+                        color: '#999'
+                    }
+                },
+                series: {
+                    name: 'Beijing AQI',
+                    type: 'line',
+                    data: data.map(function (item) {
+                        return item[1];
+                    }),
+                    markLine: {
+                        silent: true,
+                        data: [{
+                            yAxis: 50
+                        }, {
+                            yAxis: 100
+                        }, {
+                            yAxis: 150
+                        }, {
+                            yAxis: 200
+                        }]
+                    }
+                }
+            });
+        });;
         if (option && typeof option === "object") {
             myChart.setOption(option, true);
         }
