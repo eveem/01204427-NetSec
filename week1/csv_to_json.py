@@ -1,20 +1,19 @@
 import csv
 import json
 import random
+from math import log
 
 nodes = []
 edges = []
 id2name = {}
 id2size = {}
 
-TH = 30
-
-csvfile = open('./international_data.csv', 'r')
-# csvfile = open('./domestic_data.csv', 'r')
+# csvfile = open('./international_data.csv', 'r')
+csvfile = open('./domestic_data.csv', 'r')
 reader = csv.DictReader(csvfile)
 for row in reader:
     id2name[row['ASN']] = row['Name']
-    val = float(row['Bandwidth'])/TH
+    val = log(float(row['Bandwidth']), 2)
     if row['ASN'] not in id2size:
         id2size[row['ASN']] = val
     else:
@@ -55,7 +54,7 @@ d['nodes'] = nodes
 d['edges'] = edges
 
 data = json.dumps(d)
-with open('./international_data.json', 'w') as f:
-    f.write(data)
-# with open('./domestic_data.json', 'w') as f:
+# with open('./international_data.json', 'w') as f:
 #     f.write(data)
+with open('./domestic_data.json', 'w') as f:
+    f.write(data)
