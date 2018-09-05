@@ -1,0 +1,14 @@
+311 wc -l web-anon-2017041003*
+
+312 cat web-anon-201704100307.0.txt | cut -d' ' -f5 | sort | uniq -c | sort
+
+32  91 RMUn6owxz3Npjow@ku.ac.th
+cat web-anon-201704100300.0.txt | grep "RMUn6owxz3Npjow@ku.ac.th" | cut -d' ' -f1,5,11,12,15,17
+
+33 cut -d' ' -f 11,17 web-anon-2017041003* | grep '^158\.108\|^10\.\|^2406:3100' | cut -d' ' -f2 | sort | uniq -c | sort
+
+34 cut -d' ' -f 11,17 web-anon-2017041003* | grep -v '^158\.108\|^10\.\|^2406:3100' | cut -d' ' -f2 | sort | uniq -c | sort
+
+35 cut -d' ' -f 11,18 web-anon-2017041003* | grep '^158\.108\|^10\.\|^2406:3100' | cut -d' ' -f2 | sort | uniq -c | sort
+
+36 cut -d' ' -f 11,18 web-anon-2017041003* | grep -v '^158\.108\|^10\.\|^2406:3100' | cut -d' ' -f2 | sort | uniq -c | sort
