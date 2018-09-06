@@ -1,4 +1,6 @@
-f = open('312_userlist.txt')
+# f = open('312_userlist.txt')
+# f = open('33_egress_hostname.txt')
+# f = open('34_ingress_hostname.txt')
 
 l = []
 
