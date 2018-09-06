@@ -37,56 +37,41 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="au-card recent-report" style="padding-bottom:0px;">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">Request per time</h3>
-                                        <div id="request-per-time" style="height:350px; width:100%; margin-top:-30px; margin-bottom: 20px;"></div>
-                                    </div>
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      3.1.1 Requset per time
+                                    </button>
+                                  </h5>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="au-card recent-report" style="padding-bottom:0px;">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">List all user request</h3>
-                                        <div id="312-treemap" style="height:500px; width:100%; margin-top:-30px; margin-bottom:20px; "></div>
-                                    </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div id="request-per-time" style="height:350px; width:100%; margin-top:-30px; margin-bottom: 20px;"></div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="au-card recent-report" style="padding-bottom:0px;">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2">Ratio IP usage</h3>
-                                        <div id="ipusage" style="height:500px; width:600px; margin-top:20px;"></div>
-                                    </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      3.1.2 List all user request
+                                    </button>
+                                  </h5>
                                 </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="au-card chart-percent-card" style="padding-bottom:0px;">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">Login Activity</h3>
-                                        <div id="loginact" style="height:500px; width:600px; margin-top:20px;"></div>
-                                    </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                    <div id="312-treemap" style="height:350px; width:1350px; margin-bottom: 20px;"></div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="au-card chart-percent-card" style="padding-bottom:0px;">
-                                    <div class="au-card-inner">
-                                        <h3 class="title-2 tm-b-5">Login Activity</h3>
-                                        <div id="loginact" style="height:500px; width:600px; margin-top:20px;"></div>
-                                    </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header" id="headingThree">
+                                  <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      3.2 All requst of the topmost user at 03.00AM
+                                    </button>
+                                  </h5>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                  <div id="topmost" style="height:350px; width:1250px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -97,11 +82,67 @@
     </div>
 </body>
 <script type="text/javascript">
+    var dom = document.getElementById("topmost");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        parallelAxis: [
+            {
+                dim: 0, 
+                name: 'Time',
+                type: 'category',
+                data: ['03:00:21', '03:00:29', '03:00:13', '03:00:14', '03:00:11', '03:00:28', '03:00:27', '03:00:16', '03:00:12']
+            },
+            {
+                dim: 1, 
+                name: 'Username',
+                type: 'category',
+                data: ['RMUn6owxz3Npjow@ku.ac.th']
+            },
+            {
+                dim: 2, 
+                name: 'IP Src',
+                type: 'category',
+                data: ['158.108.230.26']
+            },
+            {
+                dim: 3, 
+                name: 'IP Dst',
+                type: 'category',
+                data: ['104.90.236.53', '23.209.180.9', '203.104.175.37', '114.111.45.205', '23.209.180.8']
+            },
+            {
+                dim: 4, 
+                name: 'Port Dst',
+                type: 'category',
+                data: ['80'],
+            },
+            {
+                dim: 5, 
+                name: 'Hostname',
+                type: 'category',
+                data: ['webtoon.phinf.naver.net', 'static.cbox.naver.net', 'gak.webtoons.com', 'webtoons.static.naver.net', 'www.webtoons.com', 'assets.adobedtm.com']
+            },
+        ],
+        series: {
+            type: 'parallel',
+            lineStyle: {
+                width: 4
+            },
+            data: [['03:00:11', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '203.104.175.37', '80', 'www.webtoons.com'], ['03:00:12', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '203.104.175.37', '80', 'www.webtoons.com'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.8', '80', 'webtoons.static.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:13', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:14', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:16', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:16', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:16', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:21', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:27', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '114.111.45.205', '80', 'gak.webtoons.com'], ['03:00:28', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '104.90.236.53', '80', 'assets.adobedtm.com'], ['03:00:28', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:28', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'webtoon.phinf.naver.net'], ['03:00:29', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'static.cbox.naver.net'], ['03:00:29', 'RMUn6owxz3Npjow@ku.ac.th', '158.108.230.26', '23.209.180.9', '80', 'static.cbox.naver.net']]
+
+        }
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+
     var dom = document.getElementById("request-per-time");
     var myChart = echarts.init(dom);
     var app = {};
     option = null;
-    app.title = '坐标轴刻度与标签对齐';
 
     option = {
         color: ['#3398DB'],
